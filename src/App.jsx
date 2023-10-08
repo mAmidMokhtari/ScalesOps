@@ -1,29 +1,32 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { lazy, Suspense } from "react";
 
-import ProductList from "./components/ProductList";
-import SetProduct from "./components/setProduct";
+const ProductList = lazy(() => import("./components/ProductList"));
+const ProductForm = lazy(() => import("./components/ProductForm"));
 
 const App = () => {
   return (
-    <>
-      <Navbar>
-        <Container>
-          <Navbar.Brand>
-            <h2>Store Products</h2>
-          </Navbar.Brand>
-          <Nav>
-            <Nav.Item>
-              <h3>ScalesOps Task</h3>
-            </Nav.Item>
-          </Nav>
-        </Container>
-      </Navbar>
-      <Container>
-        <SetProduct />
-        <h3 className="text-center">E-Commerce Products</h3>
-        <ProductList />
-      </Container>
-    </>
+    <Suspense
+      fallback={
+        <div className="d-flex justify-content-center align-items-center m-auto w-100 vh-100 flex-column">
+          <div className="spinner-border " role="status"></div>
+          <span className="my-2">Loading...</span>
+        </div>
+      }
+    >
+      <div className="main-content">
+        <div className="container-fluid p-5 bg-primary text-white text-center">
+          <h2>Task: E-commerce Product Listing Page</h2>
+          <a>ScalesOps</a>
+        </div>
+        <div className="products-list">
+          <ProductForm />
+          <h3 className="container-fluid p-3 bg-primary text-white text-center">
+            E-Commerce Products
+          </h3>
+          <ProductList />
+        </div>
+      </div>
+    </Suspense>
   );
 };
 

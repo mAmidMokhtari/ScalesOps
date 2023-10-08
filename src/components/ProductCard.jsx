@@ -1,14 +1,17 @@
-import { Card } from "react-bootstrap";
-
 const ProductCard = ({ product }) => {
   return (
-    <Card style={{ width: "18rem", height: "16rem" }}>
-      <Card.Body>
-        <Card.Img variant="top" className="card-image" src={product.image} />
-        <Card.Title>Name : {product.title}</Card.Title>
-        <Card.Text>Price : {product.price}$</Card.Text>
-      </Card.Body>
-    </Card>
+    <div className="text-primary-dark card">
+      <img
+        style={{ height: "200px" }}
+        className="card-img-top img-thumbnail object-fit-cover"
+        src={product.image}
+        alt={product.title}
+      />
+      <div className="card-body">
+        <p className="card-title fw-semibold">{product.title}</p>
+        <p className="card-text fw-bold">{product.price}$</p>
+      </div>
+    </div>
   );
 };
 export default ProductCard;

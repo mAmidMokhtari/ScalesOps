@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { Col, Row } from "react-bootstrap";
-
 import supabase from "../supabase";
 import FilterProducts from "./FilterProducts";
 import ProductCard from "./ProductCard";
@@ -27,7 +25,6 @@ const ProductList = () => {
 
   function sortBy(e) {
     setSortByField(e);
-
     setSortedProduct(sortFunc(sortedProduct, sortType, e));
   }
 
@@ -50,21 +47,20 @@ const ProductList = () => {
 
   return (
     <div className="container">
+      <FilterProducts
+        defaultValue="title"
+        sortBy={sortBy}
+        updatePosts={updatePosts}
+      />
       <div className="row">
-        <div className="col-md-3">
-          <FilterProducts
-            defaultValue="title"
-            sortBy={sortBy}
-            updatePosts={updatePosts}
-          />
-        </div>
-        <Row xs={1} md={2} lg={3} className="g-4">
-          {sortedProduct.map((product) => (
-            <Col key={product.id}>
-              <ProductCard product={product} />
-            </Col>
-          ))}
-        </Row>
+        {sortedProduct.map((product) => (
+          <div
+            className="mx-auto col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+            key={product.id}
+          >
+            <ProductCard product={product} />
+          </div>
+        ))}
       </div>
     </div>
   );
