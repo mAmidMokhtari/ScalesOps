@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 
 import ProductList from "./components/ProductList";
+import SetProduct from "./components/setProduct";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         </Container>
       </Navbar>
       <Container>
+        <SetProduct />
         <h3 className="text-center">E-Commerce Products</h3>
         <ProductList />
       </Container>
