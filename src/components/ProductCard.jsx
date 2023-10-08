@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 
-const ProductCard = (product) => {
+const ProductCard = ({ product }) => {
   return (
     <Card style={{ width: "18rem", height: "16rem" }}>
       <Card.Body>
